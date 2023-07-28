@@ -1,6 +1,7 @@
 from django.contrib.gis.db import models
 from django.db.models import Min
 from .managers import AsteroidManager, NaturalEventManager
+from django.contrib.auth.models import User
 
 
 # Create your models here.
@@ -47,7 +48,15 @@ class NaturalEvent(models.Model):
         NaturalEvent.objects.exclude(id__in=[min_id for title, min_id in duplicate_titles]).delete()
 
 
+class Prediction(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    asteroid = models.ForeignKey(Asteroid, on_delete=models.CASCADE)
+    natural_event = models.ForeignKey(NaturalEvent, on_delete=models.CASCADE)
+    
+    
+    
 
 
+    
 
 

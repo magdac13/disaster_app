@@ -20,7 +20,7 @@ class AsteroidScrypt:
                               'Est Dia in M(max)', 'Est Dia in Miles(min)', 'Est Dia in Miles(max)',
                               'Est Dia in Feet(min)', 'Est Dia in Feet(max)', 'Epoch Date Close Approach',
                               'Relative Velocity km per sec', 'Miles per hour', 'Miss Dist.(Astronomical)',
-                              'Miss Dist.(lunar)', 'Miss Dist.(miles)', "Orbit ID'Miss Dist.(miles)",
+                              'Miss Dist.(lunar)', 'Miss Dist.(miles)', "Orbit ID","Miss Dist.(miles)",
                               'Orbit Uncertainity', 'Minimum Orbit Intersection', 'Jupiter Tisserand Invariant',
                               'Epoch Osculation', 'Eccentricity', 'Semi Major Axis', 'Semi Major Axis',
                               'Asc Node Longitude', 'Orbital Period', 'Perihelion Distance', 'Perihelion Arg',
@@ -40,7 +40,7 @@ class AsteroidScrypt:
         return df
 
     def save_data_to_csv(self):
-        self.data.to_csv('data_files/archive/nasa_clean.csv', index=False, sep=';')
+        self.data.to_csv('scripts/data_files/archive/nasa_clean.csv', index=False, sep=';')
 
     def save_data_from_file_to_db(self):
 
@@ -56,7 +56,7 @@ class AsteroidScrypt:
             )
             asteroid.save()
 
-
-asteroid_scrypt = AsteroidScrypt()
-asteroid_scrypt.save_data_to_csv()
-asteroid_scrypt.save_data_from_file_to_db()
+def run():
+    asteroid_scrypt = AsteroidScrypt()
+    asteroid_scrypt.save_data_to_csv()
+    asteroid_scrypt.save_data_from_file_to_db()

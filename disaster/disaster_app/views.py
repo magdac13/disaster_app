@@ -6,6 +6,7 @@ import requests
 import os
 
 
+
 class GetDataAndSaveToDBView(View):
     """ Fetches data from API and saves it to database. """
 
@@ -22,3 +23,5 @@ class GetDataAndSaveToDBView(View):
         natural_events_manager.save_data_to_db(natural_events_data)
 
         return HttpResponse("Dane zostały pobrane i zapisane do bazy danych.")
+    
+    
