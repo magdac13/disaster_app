@@ -36,6 +36,15 @@ class NaturalEvent(models.Model):
 
     objects = NaturalEventManager()
 
+    @staticmethod
+    def remove_duplicates():
+        duplicate_titles = (
+            NaturalEvent.objects.values('title')
+            .annotate(min_id=Min('id'))
+            .values_list('title', 'min_id')
+        )
+
+        NaturalEvent.objects.exclude(id__in=[min_id for title, min_id in duplicate_titles]).delete()
 
 
 

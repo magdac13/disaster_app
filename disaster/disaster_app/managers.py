@@ -48,8 +48,7 @@ class NaturalEventManager(models.Manager):
 
     def get_data_from_api(self):
 
-        api_key = os.getenv('NASA_API_KEY')
-        url = f'https://eonet.gsfc.nasa.gov/api/v2.1/events'
+        url = os.getenv('INPUT_URL')
 
         response = requests.get(url)
         return response.json()
