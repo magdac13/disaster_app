@@ -1,14 +1,14 @@
 import os
-
 import pandas as pd
-from disaster.disaster_app.models import Asteroid
+from disaster_app.models import Asteroid
 import csv
 
 
-class AsteroidScrypt():
+class AsteroidScrypt:
     def __init__(self):
-        self.data_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'asteroid_data.csv')
+        self.data_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data_files','archive', 'nasa.csv')
         self.data = self.clean_data_from_file(self.data_path)
+
     def clean_data_from_file(self, data):
 
         df = pd.read_csv(data,
@@ -37,16 +37,26 @@ class AsteroidScrypt():
             'Hazardous': 'is_hazardous'
                                 })
 
-
-
         return df
 
-    data = 'data_files/nasa.csv'
-    df = clean_data_from_file(data)
-    df.to_csv('data_files/nasa_clean.csv', index=False, sep=';')
+    def save_data_to_csv(self):
+        self.data.to_csv('data_files/archive/nasa_clean.csv', index=False, sep=';')
 
-    def save_data_from_file_to_db(self, data):
-        df = pd.read_csv(data,
-                         sep=',',
-                         header=0,
-                         encoding='utf-8')
+    def save_data_from_file_to_db(self):
+
+        for _, row in self.data.iterrows():
+            asteroid = Asteroid(
+                name=row['name'],
+                diameter=row['diameter'],
+                close_approach_date=row['close_approach_date'],
+                velocity=row['velocity'],
+                miss_distance=row['miss_distance'],
+                orbiting_body=row['orbiting_body'],
+                is_hazardous=row['is_hazardous']
+            )
+            asteroid.save()
+
+
+asteroid_scrypt = AsteroidScrypt()
+asteroid_scrypt.save_data_to_csv()
+asteroid_scrypt.save_data_from_file_to_db()
