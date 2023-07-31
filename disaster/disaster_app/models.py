@@ -17,6 +17,9 @@ class Asteroid(models.Model):
     miss_distance = models.FloatField()
 
     objects = AsteroidManager()
+    
+    def __str__(self):
+        return self.name, self.orbiting_body
 
     @staticmethod
     def remove_duplicates():
@@ -37,6 +40,9 @@ class NaturalEvent(models.Model):
 
     objects = NaturalEventManager()
 
+    def __str__(self):
+        return self.title, self.category
+    
     @staticmethod
     def remove_duplicates():
         duplicate_titles = (
@@ -52,6 +58,17 @@ class Prediction(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     asteroid = models.ForeignKey(Asteroid, on_delete=models.CASCADE)
     natural_event = models.ForeignKey(NaturalEvent, on_delete=models.CASCADE)
+    asteroid_result = models.JSONField()
+    natural_event_result = models.JSONField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+
+class PossibleScenario(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    asteroid = models.ForeignKey(Asteroid, on_delete=models.CASCADE)
+    natural_event = models.ForeignKey(NaturalEvent, on_delete=models.CASCADE)
+    prediction = models.ForeignKey(Prediction, on_delete=models.CASCADE)
+    scenario = models.JSONField()
     
     
     

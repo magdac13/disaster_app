@@ -41,9 +41,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.postgres",
     "rest_framework",
     "disaster_app",
     "django_extensions",
+    "django_plotly_dash.apps.DjangoPlotlyDashConfig",
+    "bootstrap5",
 ]
 
 MIDDLEWARE = [
@@ -149,3 +152,11 @@ LOGGING = {
         },
     },
 }
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static")
+    ]
+
+print("base dir path", BASE_DIR)

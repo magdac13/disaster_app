@@ -1,5 +1,5 @@
 from django.views import View
-from django.shortcuts import HttpResponse
+from django.shortcuts import HttpResponse, render
 from .models import Asteroid, NaturalEvent
 from datetime import datetime, timedelta
 import requests
@@ -24,4 +24,8 @@ class GetDataAndSaveToDBView(View):
 
         return HttpResponse("Dane zostały pobrane i zapisane do bazy danych.")
     
+
+class MainView(View):
+    def get(self, request):
+        return render(request, 'navbar.html')
     

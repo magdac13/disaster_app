@@ -18,10 +18,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from django.contrib.auth import views as auth_views
+from disaster_app.views import MainView
 from disaster_app.views import GetDataAndSaveToDBView
 
 urlpatterns = [
+    path("main/", MainView.as_view(), name="home"),
     path("admin/", admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('get_data/', GetDataAndSaveToDBView.as_view(), name='get_data')
+    path('get_data/', GetDataAndSaveToDBView.as_view(), name='get_data'),
+    path('django_plotly_dash/', include('django_plotly_dash.urls')),
 ]
