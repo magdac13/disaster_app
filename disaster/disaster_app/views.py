@@ -27,5 +27,5 @@ class GetDataAndSaveToDBView(View):
 
 class MainView(View):
     def get(self, request):
-        return render(request, 'navbar.html')
+        return render(request, 'main_page.html')
     

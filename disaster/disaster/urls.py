@@ -22,7 +22,7 @@ from disaster_app.views import MainView
 from disaster_app.views import GetDataAndSaveToDBView
 
 urlpatterns = [
-    path("main/", MainView.as_view(), name="home"),
+    path("", MainView.as_view(), name="home"),
     path("admin/", admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
     path('get_data/', GetDataAndSaveToDBView.as_view(), name='get_data'),
