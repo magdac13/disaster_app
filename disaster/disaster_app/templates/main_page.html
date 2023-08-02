@@ -3,10 +3,17 @@
 
 {% block content %}
 
-<div class="earth">
-<div></div>
+<div class="left_textbox">
+  <h1> EARTH </h1>
+  <h5>
+    Earth is the largest planet in our solar system. It is the only planet in our solar system that is not a gas giant.
+  </h5>
+  <p> Disaster App is a powerful application that allows users to stay informed about potential threats from asteroids approaching Earth and natural disasters. Users can search for hazardous asteroids and track ongoing natural disasters like earthquakes, fires, floods, and more. The app provides visualizations, predictions, and possible scenarios to help users understand the magnitude of these events. Stay prepared and informed with Disaster App!</p>
 </div>
 
+<div class="earth">
+<div><div>
+</div>
 
 </body>
 
@@ -17,11 +24,31 @@
 
 <style>
 
+
 body {
+  
   background-image: url("https://cdn.pixabay.com/photo/2016/09/08/12/00/stars-1654074_1280.jpg");
   background-size: cover; /* Obrazek będzie rozciągnięty, aby wypełnić całe tło */
   background-position: center; /* Wyśrodkowanie obrazka */
   background-repeat: no-repeat; /* Wyłączenie powtarzania obrazka */
+}
+div {
+  margin: 0;
+  padding: 0;
+}
+.left_textbox {
+  
+    width: 350px;
+    height: 500px;
+    resize: none; /* Wyłączenie możliwości zmiany rozmiaru pola tekstowego przez użytkownika */
+    background-color: rgba(128, 0, 128, 0.3); /* Kolor tła - ciemno-fioletowy z przezroczystością */
+    backdrop-filter: blur(5px); /* Rozmycie tła */
+    padding: 10px; /* Wewnętrzny odstęp */
+    font-size: 14px; /* Rozmiar czcionki */
+    color: #fff; /* Kolor tekstu */
+    border: 1px solid #ccc; 
+    border-radius: 20px; /* Zaokrąglenie krawędzi */
+    margin-top: 70px;
 }
 
 .earth {
