@@ -3,6 +3,8 @@
 
 {% block content %}
 
+
+
 <div class="left_textbox">
   <h1> EARTH </h1>
   <h5>
@@ -12,17 +14,16 @@
 </div>
 
 <div class="earth">
-<div><div>
+  <div></div>
 </div>
 
 </body>
 
+<div class="moon">
+  <div><div>
+  </div>
 
-
-
-
-
-<style>
+  <style>
 
 
 body {
@@ -63,6 +64,7 @@ div {
   overflow: hidden;
   border-radius: 50%;
   box-shadow: 0 0 20px 20px #000 inset, 0 0 20px 2px #000;
+  
 }
 
 
@@ -90,6 +92,45 @@ div {
     transform: translateX(-50%);
   }
 }
+
+.moon {
+  width: 100px;
+  height: 100px;
+  position: fixed;
+  top: 0;
+  bottom: 300;
+  left: 700px;
+  right: 0;
+  margin: auto;
+  overflow: hidden;
+  border-radius: 50%;
+  box-shadow: 0 0 20px 20px #000 inset, 0 0 20px 2px #000;
+}
+
+
+.moon:after {
+  position: absolute;
+  content: "";
+  top: 0px;
+  bottom: 0;
+  left: 0px;
+  right: 0;
+  box-shadow: -20px -20px 50px 2px #000 inset;
+  border-radius: 50%;
+}
+
+.moon > div {
+  width: 200%;
+  height: 100%;
+  animation: spin 30s linear alternate infinite;
+  background: url(https://svs.gsfc.nasa.gov/vis/a000000/a004700/a004720/lroc_color_poles_1k.jpg);
+  /*orginal image at https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Earthmap1000x500compac.jpg/640px-Earthmap1000x500compac.jpg */
+  background-size: cover;
+}
+@keyframes spin {
+  to {
+    transform: translateX(-50%);
+  }
 </style>
 
 {% endblock %}
