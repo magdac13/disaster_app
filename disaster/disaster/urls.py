@@ -17,8 +17,7 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import include, path
-from django.contrib.auth import views as auth_views
-from disaster_app.views import MainView, LoginUser
+from disaster_app.views import MainView, LoginUser, LogoutUser
 from disaster_app.views import GetDataAndSaveToDBView
 
 urlpatterns = [
@@ -28,4 +27,5 @@ urlpatterns = [
     path('get_data/', GetDataAndSaveToDBView.as_view(), name='get_data'),
     path('django_plotly_dash/', include('django_plotly_dash.urls')),
     path("login/", LoginUser.as_view(), name='login'),
+    path("logout/", LogoutUser.as_view(), name='logout'),
 ]

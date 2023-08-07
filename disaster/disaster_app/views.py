@@ -1,5 +1,5 @@
 from django.views import View
-from django.shortcuts import HttpResponse, render
+from django.shortcuts import HttpResponse, redirect, render
 from .models import Asteroid, NaturalEvent
 from datetime import datetime, timedelta
 from django.contrib.auth import authenticate, login, logout
@@ -36,9 +36,32 @@ class LoginUser(View):
     
     def get(self, request):
         return render(request, 'login.html')
+    
+    def post(self, request):    
+        
+        username = request.POST.get['username']
+        password = request.POST.get['password']
+            
+            # Authenticate 
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            messages.success(request, 'You have been logged in.')
+            return redirect('home')
+        else:
+            messages.success(request, 'There was an error logging you in.')
+            return redirect('login')
+            
+        
         
 
 
 class LogoutUser(View):
+    
     def get(self, request):
-        pass
+        logout(request)
+        messages.success(request, 'You have been logged out.')
+        return redirect('login')
+    
+    
+    
