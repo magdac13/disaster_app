@@ -6,14 +6,8 @@
     </br>
 </br>
 </br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
+
+
 
 
         <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -69,20 +63,30 @@
     
 
     <main class="form-signin w-100 m-auto">
-      <form method="POST" action="{% url 'login' %}">
+      <form method="POST" action="{% url 'register' %}">
         {% csrf_token %}
-
         {% if messages %}
         {% for message in messages %}
         <div class="alert alert-danger" role="alert">
-          Your e-mail address or password is incorrect. Please try again
+          Your passwords don't match
         </div>
         {% endfor %}
         {% endif %}
+        
 
         <form>
+            <div class="form-floating">
+                <input type="text" class="form-control" name="first_name" placeholder="First name" required>
+                <label for="floatingPassword">First name</label>
+              </div>
+            </br>
+            <div class="form-floating">
+              <input type="text" class="form-control" name="last_name" placeholder="Last name" required>
+              <label for="floatingPassword">Last name</label>
+            </div>
+          </br>
         <div class="form-floating">
-          <input type="text" class="form-control" name="username" placeholder="Username" required>
+          <input type="text" class="form-control" name="email" placeholder="Email" required>
           <label for="floatingInput">Email address</label>
         </div>
       </br>
@@ -90,8 +94,13 @@
           <input type="password" class="form-control" name="password" placeholder="Password" required>
           <label for="floatingPassword">Password</label>
         </div>
-        
-        <button class="btn btn-outline-success w-100 py-2" type="submit">Sign in</button>
+    </br>
+        <div class="form-floating">
+            <input type="password" class="form-control" name="password2" placeholder="Password" required>
+            <label for="floatingPassword">Repeat password</label>
+          </div>
+        </br>
+        <button class="btn btn-outline-success w-100 py-2" type="submit">Register</button>
         
       </form>
     

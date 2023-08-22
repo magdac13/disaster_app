@@ -1,6 +1,6 @@
 from django.views import View
 from django.shortcuts import HttpResponse, redirect, render
-from .models import Asteroid, NaturalEvent
+from .models import Asteroid, NaturalEvent, User
 from datetime import datetime, timedelta
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -39,20 +39,40 @@ class LoginUser(View):
     
     def post(self, request):    
         
-        username = request.POST.get['username']
-        password = request.POST.get['password']
+        username = request.POST.get('username')
+        password = request.POST.get('password')
             
             # Authenticate 
-        user = authenticate(request, username=username, password=password)
+        user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            messages.success(request, 'You have been logged in.')
             return redirect('home')
         else:
             messages.success(request, 'There was an error logging you in.')
             return redirect('login')
             
         
+class RegisterUser(View):
+    
+    def get(self, request):
+        return render(request,'register.html')
+    
+    def post(self, request):
+        
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        password2 = request.POST.get('password2')
+        
+        if password!= password2:
+            messages.success(request, 'Passwords do not match.')
+            return redirect('register')
+        
+        # Create user
+        user = User.objects.create_user(username=email, first_name=first_name, last_name=last_name, password=password, email=email)
+        user.save()
+        return redirect('login')
         
 
 
@@ -60,7 +80,7 @@ class LogoutUser(View):
     
     def get(self, request):
         logout(request)
-        messages.success(request, 'You have been logged out.')
+        
         return redirect('login')
     
     
