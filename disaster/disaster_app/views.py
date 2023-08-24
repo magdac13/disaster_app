@@ -4,6 +4,7 @@ from .models import Asteroid, NaturalEvent, User
 from datetime import datetime, timedelta
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.core.paginator import Paginator
 import requests
 import os
 
@@ -83,5 +84,15 @@ class LogoutUser(View):
         
         return redirect('login')
     
+
+class AsteroidsView(View):
+    
+    def get(self, request):
+        asteroids = Asteroid.objects.all()
+        
+        return render(request, 'asteroids.html', {'asteroids': asteroids})
+        
+    
+
     
     

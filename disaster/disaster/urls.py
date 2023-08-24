@@ -17,7 +17,7 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import include, path
-from disaster_app.views import MainView, LoginUser, LogoutUser, RegisterUser
+from disaster_app.views import MainView, LoginUser, LogoutUser, RegisterUser, AsteroidsView
 from disaster_app.views import GetDataAndSaveToDBView
 
 
@@ -27,7 +27,10 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('get_data/', GetDataAndSaveToDBView.as_view(), name='get_data'),
     path('django_plotly_dash/', include('django_plotly_dash.urls')),
-    path("login/", LoginUser.as_view(), name='login'),
-    path("logout/", LogoutUser.as_view(), name='logout'),
-    path("register/", RegisterUser.as_view(), name='register'),
+    path('login/', LoginUser.as_view(), name='login'),
+    path('logout/', LogoutUser.as_view(), name='logout'),
+    path('register/', RegisterUser.as_view(), name='register'),
+    path('asteroids/', AsteroidsView.as_view(), name='asteroids'),
+    # path('asteroid/<int:asteroid_id>/', AsteroidView.as_view(), name='asteroid'),
+    
 ]

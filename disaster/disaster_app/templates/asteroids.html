@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<body>
+    
+    <div class="asteroid_table">
+        <table> 
+            <thead>
+                 <tr>
+                     <th scope="col">Name</th>
+                     <th scope="col">Diameter</th>
+                     <th scope="col">Orbiting body</th>
+                     <th scope="col">Close approach date</th>
+                     <th scope="col">Miss distance</th>  
+                 </tr>   
+            </thead>
+        <tbody>
+        
+            {% if asteroids %}
+            {% for asteroid in asteroids %}
+            <tr> 
+            <td>{{ asteroid.name }}</td>
+            <td>{{ asteroid.diameter }}</td>
+            <td>{{ asteroid.orbiting_body }}</td>
+            <td>{{ asteroid.close_approach_date }}</td>
+            <td>{{ asteroid.miss_distance }}</td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+    </tbody>
+    </table>    
+      </div>
+
+</body>
+
+<style>
+
+    html,
+body {
+  height: 100%;
+  background-image: url("https://cdn.pixabay.com/photo/2016/09/08/12/00/stars-1654074_1280.jpg");
+  background-size: cover; /* Obrazek będzie rozciągnięty, aby wypełnić całe tło */
+  background-position: center; /* Wyśrodkowanie obrazka */
+  background-repeat: no-repeat; /* Wyłączenie powtarzania obrazka */
+}
+table {
+  
+    width: 100%%;
+    height: 50%;
+    resize: none; /* Wyłączenie możliwości zmiany rozmiaru pola tekstowego przez użytkownika */
+    background-color: rgba(128, 0, 128, 0.3); /* Kolor tła - ciemno-fioletowy z przezroczystością */
+    backdrop-filter: blur(5px); /* Rozmycie tła */
+    padding: 10px; /* Wewnętrzny odstęp */
+    font-size: 14px; /* Rozmiar czcionki */
+    color: #fff; /* Kolor tekstu */
+    border: 0.5px solid #ccc; 
+    border-radius: 20px; /* Zaokrąglenie krawędzi */
+    margin-top: 70px;
+}
+.asteroid_table {
+    margin-left: 180px;
+}
+
+td, th {
+    padding: 10px;
+    border: 1px solid #
+}
+td:hover {
+    background-color: rgba(138, 0, 138, 0.3); /* Kolor tła - ciemno-fioletowy z przezroczystością */
+    backdrop-filter: blur(5px); /* Rozmycie tła */
+}
+
+</style>
+
+
+{% endblock %}
