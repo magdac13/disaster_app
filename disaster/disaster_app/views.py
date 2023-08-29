@@ -88,9 +88,24 @@ class LogoutUser(View):
 class AsteroidsView(View):
     
     def get(self, request):
-        asteroids = Asteroid.objects.all()
+        # asteroid_manager = Asteroid.objects
+        # natural_events_manager = NaturalEvent.objects
+
+        # Pobierz dane z API NASA
+        # asteroid_data = asteroid_manager.get_data_from_api()
+        # natural_events_data = natural_events_manager.get_data_from_api()
+
+        # Zapisz dane do bazy danych
+        # asteroid_manager.save_data_to_db(asteroid_data)
+        # natural_events_manager.save_data_to_db(natural_events_data)
+
+        asteroids = Asteroid.objects.all().order_by('-close_approach_date')
         
-        return render(request, 'asteroids.html', {'asteroids': asteroids})
+        paginator = Paginator(asteroids, 15)
+        page = request.GET.get('page')
+        pages = paginator.get_page(page)
+        
+        return render(request, 'asteroids.html', {'pages': pages})
         
     
 

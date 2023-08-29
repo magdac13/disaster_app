@@ -3,34 +3,54 @@
 {% block content %}
 
 <body>
-    
     <div class="asteroid_table">
         <table> 
             <thead>
                  <tr>
                      <th scope="col">Name</th>
-                     <th scope="col">Diameter</th>
+                     <th scope="col">Diameter (km)</th>
                      <th scope="col">Orbiting body</th>
+                     <th scope="col">Velocity (km/h)</th>
                      <th scope="col">Close approach date</th>
-                     <th scope="col">Miss distance</th>  
+                     <th scope="col">Miss distance (km)</th>  
                  </tr>   
             </thead>
         <tbody>
-        
-            {% if asteroids %}
-            {% for asteroid in asteroids %}
+            
+            {% if pages %}
+            {% for asteroid in pages %}
             <tr> 
             <td>{{ asteroid.name }}</td>
             <td>{{ asteroid.diameter }}</td>
             <td>{{ asteroid.orbiting_body }}</td>
+            <td>{{ asteroid.velocity }}</td>
             <td>{{ asteroid.close_approach_date }}</td>
             <td>{{ asteroid.miss_distance }}</td>
             </tr>
             {% endfor %}
             {% endif %}
     </tbody>
-    </table>    
+    </table>
+    <div class="pagination">
+        <span class="step-links">
+            {% if pages.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ pages.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ pages.number }} of {{ pages.paginator.num_pages }}.
+            </span>
+
+            {% if pages.has_next %}
+                <a href="?page={{ pages.next_page_number }}">next</a>
+                <a href="?page={{ pages.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>    
       </div>
+      
+        
 
 </body>
 
@@ -59,7 +79,11 @@ table {
     margin-top: 70px;
 }
 .asteroid_table {
-    margin-left: 180px;
+    position: absolute;
+    top: 40%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
 }
 
 td, th {
